@@ -22,13 +22,13 @@ Manage the shopping cart (update quantities, remove items)
 Proceed to checkout and place orders
 User authentication and account management
 ## Technologies Used
-React: JavaScript library for building user interfaces
-React Router: Declarative routing for React applications
-Axios: Promise-based HTTP client for making API requests
-Styled Components: CSS-in-JS library for styling components
-JWT: JSON Web Tokens for user authentication
-Bootstrap: Front-end framework for responsive design
-Getting Started
+- React: JavaScript library for building user interfaces
+- React Router: Declarative routing for React applications
+- Axios: Promise-based HTTP client for making API requests
+- Styled Components: CSS-in-JS library for styling components
+- JWT: JSON Web Tokens for user authentication
+- Bootstrap: Front-end framework for responsive design
+# Getting Started
 ## Prerequisites
 Before running the application locally, make sure you have the following software installed on your machine:
 
