@@ -1,4 +1,4 @@
-import React from 'react' 6.9k (gzipped: 2.7k)
+import React from 'react';
 
 const ShopCategory = () => {
     return (

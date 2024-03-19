@@ -1,9 +1,10 @@
-import React from 'react' 6.9k (gzipped: 2.7k)
+import React from 'react';
+import  Hero  from '../Componets/Hero/Hero';
 
 const Shop = () => {
     return (
         <div>
-
+            <Hero />
         </div>
     )
 }
