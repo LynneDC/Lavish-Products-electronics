@@ -1,13 +1,17 @@
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './Componets/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginSignup from './Pages/LoginSignup';
+import LoginSignup from './Pages/Login';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
+ import { Login } from './Pages/Login'; 
+import { Register } from './Pages/Register';
 
 function App() {
+  const [currentForm, setCurrentForm] = useState('login');
   return (
     <div>
       <BrowserRouter>
@@ -21,6 +25,10 @@ function App() {
           <Route path='/login' element={<LoginSignup />} />
         </Routes>
       </BrowserRouter>
+      {
+        currentForm === "login" ? <Login /> : <Register />
+      }
+      <Login />
     </div>
   );
   
