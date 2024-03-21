@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Navbar from './Componets/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginSignup from './Pages/Login';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
@@ -12,6 +11,10 @@ import { Register } from './Pages/Register';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -22,11 +25,11 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/product' element={<Product />} />
           <Route path='/product/:productId' element={<Product />} />
-          <Route path='/login' element={<LoginSignup />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
       {
-        currentForm === "login" ? <Login /> : <Register />
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
       }
       <Login />
     </div>
