@@ -4,6 +4,8 @@ import logo from "../Assets/tech.png";
 import cart_icon from "../Assets/cart_icon.png";
 import { Link } from "react-router-dom";
 
+
+
 const Navbar = () => {
   const [menu, setMenu] = useState("shop");
 
@@ -24,6 +26,15 @@ const Navbar = () => {
         <li onClick={() => setMenu("cameras")}>
           <Link style={{ textDecoration: 'none'}} to="/cameras">Cameras</Link>{" "}
           {menu === "cameras" ? <hr /> : <></>}
+        </li>
+        {/* adding about and contact */}
+        <li onClick={() => setMenu("cameras")}>
+          <Link style={{ textDecoration: 'none'}} to="/about">About</Link>{" "}
+          {menu === "about" ? <hr /> : <></>}
+        </li>
+        <li onClick={() => setMenu("contact")}>
+          <Link style={{ textDecoration: 'none'}} to="/contact">Contact</Link>{" "}
+          {menu === "contact" ? <hr /> : <></>}
         </li>
         <li onClick={() => setMenu("cart")}>
           <Link style={{ textDecoration: 'none'}} to="/cart">Cart</Link> {menu === "cart" ? <hr /> : <></>}
