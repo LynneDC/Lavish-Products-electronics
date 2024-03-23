@@ -1,10 +1,18 @@
 import React from 'react';
-import  Hero  from '../Componets/Hero/Hero';
+import  Hero  from '../Components/Hero/Hero';
+import { Popular } from '../Components/Popular/Popular';
+import Offers from '../Components/Offers/Offers';
+import Newcollections from '../Components/Newcollections/Newcollections';
+import NewsLetter from '../Components/NewsLetter/NewsLetter';
 
 const Shop = () => {
     return (
         <div>
             <Hero />
+            <Popular />
+            <Offers />
+            <Newcollections />
+            <NewsLetter />
         </div>
     )
 }

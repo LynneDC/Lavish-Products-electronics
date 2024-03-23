@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
 import './App.css';
-import Navbar from './Componets/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginSignup from './Pages/LoginSignup';
 import Shop from './Pages/Shop';
+import Cart from './Pages/Cart';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
-import Cart from './Pages/Cart';
- import { Login } from './Pages/Login'; 
-import { Register } from './Pages/Register';
+import Footer from './Components/Footer/Footer';
+import men_banner from './Components/Assets/banner_mens.png'
+import women_banner from './Components/Assets/banner_women.png'
+import kid_banner from './Components/Assets/banner_kids.png'
+import React from 'react';
+
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('login');
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
-
   return (
     <div>
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path='/' element={<Shop />} />
-          <Route path='/shop' element={<ShopCategory category="Shop" />} />
-          <Route path='/cart' element={<Cart />} />
+          <Route path='/mens' element={<ShopCategory banner={men_banner} category="men" />} />
+          <Route path='/womens' element={<ShopCategory banner={women_banner} category="women" />} />
+          <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid" />} />
           <Route path='/product' element={<Product />} />
-          <Route path='/product/:productId' element={<Product />} />
-          <Route path='/login' element={<Login />} />
+            <Route path=':productId' element={<Product />} />
+        <Route/>
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/login' element={<LoginSignup/>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-      <Login />
+      
     </div>
   );
-  
 }
+
 
 export default App;
