@@ -34,7 +34,7 @@ const upload = multer({
 
 //creating upload endpoint for images
 app.use('/images', express.static('upload/images'));
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/upload', upload.single('product'), (req, res) => {
     res.json({
         success: 1,
         profile_url: `http://localhost:${port}/images/${req.file.filename}`
@@ -79,8 +79,19 @@ const Product = mongoose.model('Product', {
 });
 
 app.post('/addproduct', async (req, res) => {
+    let products = await Product.find({});
+    let id;
+    if (products.lenght>0)
+    {
+        let last_product_array = products.slice(-1);
+        let last_product = last_product_array[0];
+        id = last_product.id+1;
+    }
+    else {
+        id=1;
+    }
     const product = new Product({
-        id: req.body.id,
+        id: id,
         name: req.body.name,
         image: req.body.image,
         category: req.body.category,
@@ -91,14 +102,27 @@ app.post('/addproduct', async (req, res) => {
     });
     console.log(product);
     await product.save();
-    console.log('Product saved');
+    console.log('Saved');
     res.json({
         success: true,
         name:req.body.name,
     });
 })
-
-
+// creating api for deleting product
+app.post('/removeproduct', async (req, res) => {
+    await Product.findOneAndDelete({id: req.body.id});
+    console.log('Deleted');
+    res.json({
+        success: true,
+        name: req.body.name,
+    });
+})
+// creating api for getting all product
+app.get('/allproducts', async (req, res) => {
+    let products = await Product.find({});
+    console.log('All products fetched');
+    res.send(products);
+})
 
 app.listen(port, (error) => {
     if (!error) {
