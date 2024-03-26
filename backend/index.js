@@ -81,7 +81,7 @@ const Product = mongoose.model('Product', {
 app.post('/addproduct', async (req, res) => {
     let products = await Product.find({});
     let id;
-    if (products.lenght>0)
+    if (products.length>0)
     {
         let last_product_array = products.slice(-1);
         let last_product = last_product_array[0];
@@ -93,11 +93,11 @@ app.post('/addproduct', async (req, res) => {
     const product = new Product({
         id: id,
         name: req.body.name,
-        image: req.body.image,
+        image: true,
         category: req.body.category,
         new_price: req.body.new_price,
         old_price: req.body.old_price,
-        available: req.body.available,
+        available: true,
         
     });
     console.log(product);
@@ -122,6 +122,91 @@ app.get('/allproducts', async (req, res) => {
     let products = await Product.find({});
     console.log('All products fetched');
     res.send(products);
+})
+
+//schema for creating user model
+
+const Users = mongoose.model('Users', {
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+    },
+    cartData: {
+        type: Object,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+
+});
+
+// creatind endpoint for registering user
+
+app.post('/signup', async (req, res) => {
+    let check = await Users.findOne({email: req.body.email});
+    if (check) {
+        return res.status(400).json({success: false, errors: 'Email already exists'});   
+    }
+    let cart = {};
+    for (let i = 0; i < 300; i++) {
+        cart[i] = 0;
+    }
+    const user = new Users({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        cartData: cart,
+    });
+    await user.save();
+
+    const data = {
+        user: {
+            id: user.id,
+        },
+    }
+
+    const token = jwt.sign(data, 'secret_ecom');
+    res.json({success: true,token});
+});
+
+// creatign endpoint for login user
+app.post('/login', async (req, res) => {
+    let user = await Users.findOne({email: req.body.email});
+    if (user) {
+        const passCompare = req.body.password === user.password;
+        if (passCompare) {
+            const data = {
+                user: {
+                    id: user.id,
+                },
+            }
+            const token = jwt.sign(data, 'secret_ecom');
+            res.json({success: true, token});
+        }
+        else{
+            res.json({success: false, errors: 'Password is incorrect'});
+        }
+    }
+    else {
+        res.json({success: false, errors: 'Email not found'});
+    }
+});
+
+
+//creating endpoint for newcollection data
+app.get('/newcollections', async (req, res) => {
+    let products = await Product.find({category: 'newcollection'});
+    let newcollection = products.slice(1).slice(-8);
+    console.log('New collection fetched');
+    res.send(newcollection);
 })
 
 app.listen(port, (error) => {
