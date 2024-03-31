@@ -7,10 +7,12 @@ import Cart from './Pages/Cart';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
 import Footer from './Components/Footer/Footer';
-import men_banner from './Components/Assets/banner_mens.png'
+import laptop_banner from './Components/Assets/laptop_banner.png'
+import about_banner from './Components/Assets/gt.png'
 import women_banner from './Components/Assets/banner_women.png'
 import kid_banner from './Components/Assets/banner_kids.png'
 import React from 'react';
+
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Shop />} />
-          <Route path='/mens' element={<ShopCategory banner={men_banner} category="men" />} />
+          <Route path='/laptops' element={<ShopCategory banner={laptop_banner} category="men" />} />
+          <Route path='/about' element={<ShopCategory banner={about_banner} category="about" />} />
           <Route path='/womens' element={<ShopCategory banner={women_banner} category="women" />} />
           <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid" />} />
           <Route path='/product' element={<Product />} />
