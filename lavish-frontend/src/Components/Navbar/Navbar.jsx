@@ -30,13 +30,13 @@ const Navbar = () => {
           <Link style={{ textDecoration: 'none'}} to="/laptops">Laptops</Link>{" "}
           {menu === "laptops" ? <hr /> : <></>}
         </li>
-        <li onClick={() => setMenu("womens")}>
-          <Link style={{ textDecoration: 'none'}} to="/womens">Cameras</Link>{" "}
-          {menu === "womens" ? <hr /> : <></>}
+        <li onClick={() => setMenu("cameras")}>
+          <Link style={{ textDecoration: 'none'}} to="/cameras">Cameras</Link>{" "}
+          {menu === "cameras" ? <hr /> : <></>}
         </li>
       
-          <li onClick={() => setMenu("kids")}>
-          <Link style={{ textDecoration: 'none'}} to="/kids">Accesories</Link> {menu === "kid" ? <hr /> : <></>}
+          <li onClick={() => setMenu("accesories")}>
+          <Link style={{ textDecoration: 'none'}} to="/accesories">Accesories</Link> {menu === "accesories" ? <hr /> : <></>}
         </li>
       </ul>
       <div className="nav-login-cart">
